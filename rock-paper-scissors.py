@@ -2,7 +2,7 @@ import random
 while True:
  choices = ["rock","paper","scissors"]
  computer = random.choice(choices)
- player = None
+ player = input("rock, paper, scissors?:") .lower()
 
  while player not in choices:
     player = input("rock, paper, scissors?:") .lower()
