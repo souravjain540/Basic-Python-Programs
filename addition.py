@@ -1,6 +1,8 @@
-num1 = int(input("Enter First Number: ")
-num2 = int(input("Enter Second Number: ")
+print("::Utility for Printing Numbers::")
+print("********************************")
+n1 = input("Enter First Number : ")
+n2 = input("Enter Second Number : ")
 
-sum = num1+num2
+sum = int(n1) + int(n2)
 
-print(""Sum of {0} and {1} is {2}" .format(num1, num2, sum))
+print("The sum is: ", sum)
