@@ -1,7 +1,7 @@
 """
 Python program to find sum of divisors of a number n,
 for example:
-    print(sum_divisors(0))
+print(sum_divisors(0))
 # 0
 print(sum_divisors(3)) 
 # Should sum of 1
