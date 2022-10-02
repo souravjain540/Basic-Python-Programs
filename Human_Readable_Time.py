@@ -13,3 +13,4 @@ def make_readable(seconds): #Function converts an amount of seconds into hours:m
     return f"{hour}:{minute}:{second}"   #returns the value
 
 print(make_readable(input('')))
+input('')
