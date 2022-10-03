@@ -8,3 +8,4 @@ This repository will contain basic python programming questions and their soluti
 - It should be in .py extenstion
 - Please run the program and check if there are no errors before making the PR
 - Review other PR's as well
+- No Spamming allowed, make sure to include all programs in one PR.
