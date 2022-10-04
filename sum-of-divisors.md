@@ -26,5 +26,4 @@ def sum_divisors(n):
         else:
             x += 1
 	    continue
-            
     return sum
