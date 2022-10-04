@@ -23,9 +23,8 @@ start_time = time.time()
 
 #change these values 
 x0=0.1
-q0=-0.1
 begin_r=0
-end_r=1
+end_r=4
 step=0.0001
 
 
@@ -35,17 +34,16 @@ X=[]
 Y=[]
       
 @njit
-def bif(q0, x0, r):
+def bif(x0, r):
     N=1000  
     x = np.zeros(len(range(0, N)))
     x[0]=x0
-    q=q0
     for i in range(1,N):
-        x[i]= r *(1 + x[i - 1]) * (1 + x[i- 1]) * (2 - x[i - 1]) + q  #logistic with extra parameter
+       x[i] = r * x[i-1] * (1 - x[i-1]) #logistic map  #logistic with extra parameter
 
     return (x[-130:])
 
-bif1 = partial(bif, q0, x0)
+bif1 = partial(bif,x0)
 if __name__ == '__main__':
     # create and configure the process pool
     with Pool(4) as p:
