@@ -1,5 +1,5 @@
 import random
-y = ["abhinav","sravan","koundinya","ajitesh","teja","tt"]
+y = list(map(str,input().split()))
 t1 = []
 t2 = []
 while (len(y) != 0):
