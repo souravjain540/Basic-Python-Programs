@@ -1,7 +1,7 @@
 """
-Paranthesis checker check to see if in a given array all paranthesis
+Paranthesis checker checks to see if in a given array all paranthesis
 are closed, if so the function returns true otherwise false. 
-i.e. {}, [], (), and ([]) would return true. }, or ([)] would return  
+i.e. {}, [], (), and ([]) would return true, }, or ([)] would return  
 false. A stack is implemented to check only when a }, ], or ) are 
 present in array.
 Note that if nothing is entered the function returns true.
