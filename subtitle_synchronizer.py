@@ -62,4 +62,4 @@ def main():
 
 #Once the program has finished running, you will have your subtitles synchronized
 #in a file that says "output.txt". Copy its content and paste it into your original subtitles file.
-main()
+main() 
