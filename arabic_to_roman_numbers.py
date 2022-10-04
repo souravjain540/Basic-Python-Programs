@@ -1,3 +1,11 @@
+################################################################################
+
+# Question
+# Write a script that convert numbers from arabic to roman format
+
+################################################################################
+
+# Answer
 def toRoman(num):
     romans = {
         1000: "M",
@@ -27,7 +35,9 @@ def toRoman(num):
     else:
         return  toRoman(num // 1000) + ' ⎺ ' + toRoman(num - 1000 * (num // 1000))
 
-# Tests
+################################################################################
+
+# Test
 def test(value, expected):
     results = toRoman(value)
     if results == expected:
@@ -35,15 +45,9 @@ def test(value, expected):
     else:
         print(f'✗ Test {value} incorrect. Expected {expected}, obtained {results}')
 
-# Tests
-def test(value, expected):
-  results = toRoman(value)
-  if results == expected:
-      print(f'✓ Test {value} correct')
-  else:
-      print(f'✗ Test {value} incorrect. Expected {expected}, obtained {results}')
+################################################################################
 
-
+# Remove coment from line below to test some exemples
 # test(1, "I")
 # test(2, "II")
 # test(3, "III")
@@ -87,4 +91,9 @@ def test(value, expected):
 # test(990, "CMXC")
 # test(1000, "M")
 
+################################################################################
+
+# Working exemple
 toRoman(100)
+
+################################################################################
