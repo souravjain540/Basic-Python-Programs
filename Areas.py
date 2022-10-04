@@ -1,8 +1,6 @@
-# Program to calculate the ares of 2d shapes
+# Program to calculate the areas of 2d shapes
 
 import math
-
-
 
 def square(side):
     area = side * side
