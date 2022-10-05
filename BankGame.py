@@ -1,3 +1,4 @@
+#default password is 4758
 import random
 class BankGame :
     @staticmethod
