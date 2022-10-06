@@ -11,9 +11,9 @@ msg =  str(OTP) + "Your OTP is"
 s = smtplib.SMTP('smtp.gmail.com', 587)
 s.starttls()
 
-emailid = "poojasawant1030@dbatu.ac.in"
-s.login("poojasawant1030@gmail.com", " gwagviywswrmfhpo")
-s.sendmail("poojasawant1030@gmail.com", emailid, msg)
+emailid = "receiver's id"
+s.login("sender's id", "google app password")
+s.sendmail("sender's id", emailid, msg)
 a = input("Enter the OTP >>: ")
 if a == OTP:
     print("Verified")
