@@ -1,0 +1,117 @@
+#pgm to split days into years,months& days
+
+def daysplit(d):
+  y=d//365
+  l=d%365
+  m=l//30
+  ie=l%30
+  print(y,"years",m,"months",ie,"days")
+d=int(input("enter no of days:"))
+daysplit(d)
+
+
+#pgm to split seconds into hours,minutes& seconds
+def secsplit(s):
+  h=s//3600
+  l=s%3600
+  m=l//60
+  le=l%60
+  print(h,"hour",m,"min",le,"sec")
+
+s=int(input("enter seconds:"))
+secsplit(s)
+
+#to find cube root of perfect cube
+def curt(m):
+  x=1
+  y=x*x*x
+  while y<m:
+    x+=1
+  print(x)
+  
+  #to check vowel or consonant
+  
+  def chkalphtype(a):
+    v="aAeEiIoOuU"
+    if a in v:
+      print("its a vowel")
+    else:
+      print("its a consonant")
+  a=input("enter a alphabet: ")
+  chkalphtype(a)
+  
+ # swapcase
+def swap(x):
+  y=""
+  for i in x:
+    if i.isupper():
+      y+=i.lower()
+    elif i.islower():
+      y+=i.upper()
+    else:
+      y+=i
+  return y
+k=input("enter string to swapcase")
+swap(k)
+
+
+
+#to calc no days from birth
+dob=input("enter date of birth in format dd-mm-yyyy :") #dob
+pres=input("enter todays date in format dd-mm-yyyy :") #present day
+dob1=dob.split("-") # dob seperated as list with date,month and year separate items
+pres1=pres.split("-") # similar to dob1
+cd1=0#count day
+cd2=0
+cm1=0#count month
+cm2=0
+def leap_chk(val): #to check leap year
+  if val%4==0 :
+    if val%100==0 :
+      if val%400==0 :
+        return True
+      else:
+        return False
+    else:
+      return True
+  else:
+    return False
+def yrday(yr):#to find number of days from bc 0 to a particular yr
+  cd=0
+  cm=0
+  for i in range(0,yr):
+    if leap_chk(i):
+      cd+=366
+    else:
+      cd+=365
+    cm+=12
+  return (cd,cm)
+def moday(mo,yr):#to find number of days passed in a particular yr
+  cd=0
+  for i in range(mo):
+    if i in (1,3,5,7,8,10,12):
+      cd+=31
+    elif i in (4,6,9,11):
+      cd+=30
+    else:
+      if leap_chk(yr):
+        cd+=29
+      else:
+        cd+=28
+  return cd
+sty,eny=eval(dob1[2]),eval(pres1[2])#yrs
+cd1,cm1=yrday(sty)
+cm1+=eval(dob1[1])-1
+yrday(eny)
+cd2,cm2=yrday(eny)
+cm2+=eval(pres1[1])-1
+cd1+=moday(eval(dob1[1]),eval(dob1[2]))
+cd2+=moday(eval(pres1[1]),eval(pres1[2]))
+cd1+=eval(dob1[0])#no of days from 0 BC
+cd2+=eval(pres1[0])#"                  "
+td=cd2-cd1+1#days
+tm=cm2-cm1#months
+print("you have been leaving on this planet for ",td," days or",tm," months")
+
+
+
