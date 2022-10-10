@@ -8,9 +8,9 @@ def reverse32bitsignedint(n):
     ans = 0
     while n:
         quotient = n // 10
-        reminder = n % 10
+        remainder = n % 10
         n = quotient
-        ans = ans * 10 + reminder
+        ans = ans * 10 + remainder
     limit = 1 << 31
     if is_negative:
         ans = -ans
