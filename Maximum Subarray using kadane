@@ -1,0 +1,12 @@
+def findKadane(givnList, leng):
+    cur_maxi = givnList[0]
+    maxi_so_far = givnList[0]
+    for i in range(1, leng):
+        cur_maxi = max(givnList[i], cur_maxi + givnList[i])
+        maxi_so_far = max(maxi_so_far, cur_maxi)
+    return maxi_so_far
+givnList = [-3, 4, 1, 2, -1, -4, 3]
+leng = len(givnList)
+res = findKadane(givnList, leng)
+print('The maximum subarray sum of the given list', givnList, ':')
+print(res)
