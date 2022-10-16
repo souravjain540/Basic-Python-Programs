@@ -1,0 +1,18 @@
+# importing the needed libraries
+import pandas as pd
+from sklearn import linear_model
+from sklearn.tree import DecisionTreeClassifier
+import matplotlib.pyplot as plt
+
+# loading the data
+df = pd.read_csv('the path of your file in csv format')
+
+# building the graph do visualize the data
+plt.xlabel('Year')
+plt.ylabel('Per Capita Income')
+plt.scatter(df.year, df.income)
+
+# making prediction using linear regression
+reg = linear_model.LinearRegression()
+reg.fit(df[['year']].values, df.income)
+reg.predict([[2022]])
