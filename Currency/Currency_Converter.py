@@ -14,7 +14,7 @@ root.minsize(1280,720)
 root.maxsize(1280,720)
 HEIGHT = 720
 WIDTH = 720
-FONT = font.Font(family="Open Sans",size="14", weight="bold")
+FONT = font.Font(family="Roboto",size="14", weight="bold")
 
 canvas = Canvas(root, height=HEIGHT, width=WIDTH)
 canvas.pack()
@@ -45,27 +45,37 @@ label2.place(relx = 0.64,rely = 0.03,relwidth = 0.15, relheight =0.25)
 options = [
     "BTC",
     "USD",
+    "BGN",
+    "CAD",
     "EUR",
     "INR",
+    "IDR",
+    "JPY",
+    "BRL",
+    "TRY",
+    "PLN",
+    "PHP",
+    "DKK",
     "GBP",
+    "THB",
     "AUD",
-    "CAD",
+    "SGD",
     "CHF",
     "RUB",
     "CNY",
-    "JPY"
+    "ZAR"
 ]
 
 clicked1 = StringVar()
 clicked1.set("Select")
 listbox1 = OptionMenu(frame, clicked1, *options)
-listbox1.config(bg="#fc034e", fg="black", activeforeground="#fc034e",activebackground="black", font=FONT)
+listbox1.config(bg="#1a7cc7", fg="black", activeforeground="#1a7cc7",activebackground="black", font=FONT)
 listbox1.place(relx=0.07,rely=0.03,relheight=0.28,relwidth=0.38)
 
 clicked2 = StringVar()
 clicked2.set("Select")
 listbox2 = OptionMenu(frame,clicked2,*options)
-listbox2.config(bg="#fc034e", fg="black", activeforeground="#fc034e",activebackground="black", font=FONT)
+listbox2.config(bg="#1a7cc7", fg="black", activeforeground="#1a7cc7",activebackground="black", font=FONT)
 listbox2.place(relx=0.56,rely=0.3,relheight=0.28,relwidth=0.38)
 
 #for logo image between two options list
@@ -130,16 +140,16 @@ def convert(c1,c2,amount):
 def help():
     newwin = Tk()
     newwin.title("Reference")
-    newwin.maxsize(400,300)
+    newwin.maxsize(800,600)
     newwin.minsize(400,300)
-    newcanvas = Canvas(newwin, height = 400, width = 300)
+    newcanvas = Canvas(newwin, height = 800, width = 600)
     newcanvas.pack()
-    newframe = Frame(newwin, bg ="yellow")
+    newframe = Frame(newwin, bg ="#FF731D")
     newframe.place(relwidth = 1, relheight = 1)
-    newlabel = Label(newframe, font = ("Comic Sans MS", 11, "bold"), fg ="#001a4d", anchor = "nw", justify = "left", bd =4)
+    newlabel = Label(newframe, font = ("Martel", 11, "bold"), fg ="#1D1CE5", anchor = "nw", justify = "left", bd =4)
     newlabel.place(relx = 0.05, rely = 0.05,relwidth = 0.90, relheight = 0.90)
-    newlabel["text"] = "Abbrevations:\nBTC - Bitcoin\nUSD - USD Dollar\nEUR - Euro\nJPY - Japnese Yen\nGBP - Pound Sterling\nAUD - Australian Dollar\nCAD - Canadian Dollar\nCHF - Swiss Frank\nINR - Indian Rupees\nRUB - Russian Rubble\nCNY - Chinese Yuan"
-    newbutton = Button(newframe, text = "Back",font = ("Comic Sans MS", 11, "bold"),  bg = "pink", fg = "black", activeforeground = "pink", activebackground = "black", command = lambda:newwin.destroy())
+    newlabel["text"] = "Abbreviations: \nBTC - Bitcoin\nUSD - United States Dollar\nCAD - Canadian Dollar\nBGN - Bulgaria Lev\nEUR - Euro\nINR - Indian Rupee\nIDR - Indonesian Rupiah\nJPY - Japanese Yen\nBRL - Brazilian Real\nTRY - Turkish Lira\nPLN - Polish zloty \nPHP - Philippine Peso\nDKK - Denmark Krone\nGBP - British Pound Sterling\nTHB - Thailand Baht\nAUD - Australian Dollar\nSGD - Singaporean Dollar\nCHF - Swiss Franc\nRUB - Russian Ruble\nCNY - Chinese Yuan\nZAR - South African Rand"
+    newbutton = Button(newframe, text = "Back",font = ("Martel", 11, "bold"),  bg = "pink", fg = "black", activeforeground = "pink", activebackground = "black", command = lambda:newwin.destroy())
     newbutton.place(relx = 0.76, rely = 0.82, relwidth = 0.14, relheight = 0.11)
     newwin.mainloop()
 
