@@ -1,6 +1,6 @@
 
 def findArea(r):
     PI = 3.142
-    return PI * (r*r);
+    return PI * (r*r)
   
-print("Area is %.6f" % findArea(5));
+print("Area is %.2f" % findArea(5))
