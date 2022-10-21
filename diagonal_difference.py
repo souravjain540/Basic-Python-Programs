@@ -31,7 +31,7 @@ def absolute_difference(matrix,n):
 
 if __name__ == '__main__':
 
-    n = int(input().strip())
+    n = int(input())
 
     matrix = []
 
@@ -40,6 +40,4 @@ if __name__ == '__main__':
 
     result = absolute_difference(matrix, n)
 
-    fptr.write(str(result) + '\n')
-
-    fptr.close()
+    print(str(result) + '\n')
