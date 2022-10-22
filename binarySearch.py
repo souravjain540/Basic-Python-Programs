@@ -28,4 +28,16 @@ def userInput():
     else:
         print("The element was found at index ", result)
 
-userInput()
+# Tests ('pip install pytest'; run with 'pytest binarySearch.py')
+def test_find_element_in_list():
+    arr = [11, 12, 22, 25, 34, 64, 90, 91]
+    result = binarySearch(arr, 25)
+    assert result == 3
+    
+def test_elem_missing():
+    arr = [11, 12, 22, 25, 34, 64, 90, 91]
+    result = binarySearch(arr, 16)
+    assert result == -1
+    
+if __name__ == "__main__":
+    userInput()

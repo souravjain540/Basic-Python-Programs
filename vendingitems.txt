@@ -1,0 +1,5 @@
+Potato Chips|20 
+Popcorn|30 
+Chocolate|15 
+Biscuit|10 
+Soft Drink|12
