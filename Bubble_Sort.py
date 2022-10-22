@@ -44,6 +44,14 @@ def main():
       
     sort.bubbleSortRecursive()
     print("Sorted array :\n", sort)
+    
+# Tests ('pip install pytest'; run with 'pytest Bubble_Sort.py')
+def test_result_in_order():
+    array = [64, 34, 25, 12, 22, 11, 90]
+    sort = bubbleSort(array)      
+    sort.bubbleSortRecursive()
+    for i in range(sort.length-1):
+        assert sort.array[i] < sort.array[i+1]
   
   
 if __name__ == "__main__":
