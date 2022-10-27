@@ -1,4 +1,4 @@
-sentence = "GeeksforGeeks"
+sentence = "Its raining today"
   
 frequency = {char : sentence.count(char) for char in set(sentence)}
   
