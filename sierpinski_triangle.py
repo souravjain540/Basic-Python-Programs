@@ -39,7 +39,6 @@ def draw_triangle():
         sierpinski.dot()
         dots+=1
 
-if triangle_side_length > 0:
-    draw_triangle()
+draw_triangle()
 
 turtle.done()
