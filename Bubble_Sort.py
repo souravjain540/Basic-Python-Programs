@@ -1,6 +1,6 @@
 # Python Program for implementation of
 # Recursive Bubble sort
-class bubbleSort:
+class BubbleSort:
     
     def __init__(self, array):
         self.array = array
@@ -40,7 +40,7 @@ class bubbleSort:
 def main():
     array = [64, 34, 25, 12, 22, 11, 90]
       
-    sort = bubbleSort(array)
+    sort = BubbleSort(array)
       
     sort.bubbleSortRecursive()
     print("Sorted array :\n", sort)
@@ -48,7 +48,7 @@ def main():
 # Tests ('pip install pytest'; run with 'pytest Bubble_Sort.py')
 def test_result_in_order():
     array = [64, 34, 25, 12, 22, 11, 90]
-    sort = bubbleSort(array)      
+    sort = BubbleSort(array)      
     sort.bubbleSortRecursive()
     for i in range(sort.length-1):
         assert sort.array[i] < sort.array[i+1]
