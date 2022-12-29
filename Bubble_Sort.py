@@ -1,5 +1,8 @@
 # Python Program for implementation of
-# Recursive Bubble sort
+# Recursive Bubble sort and Half Way Bubble Sort
+import time
+
+
 class BubbleSort:
 
     def __init__(self, array):
@@ -59,11 +62,25 @@ def main():
 
     sort = BubbleSort(array)
 
+    # wait for 3 seconds
+    time.sleep(3)
+    # get the start time
+    st = time.time()
     sort.bubbleSortRecursive()
+    # get the end time
+    et = time.time()
     print("Sorted array using recursive method:\n", sort)
+    print("Execution time:", (et-st)*1000, "milliseconds.")
 
+    # wait for 3 seconds
+    time.sleep(3)
+    # get the start time
+    st = time.time()
     sort.bubblesort()
+    # get the end time
+    et = time.time()
     print("Sorted array using half way method:\n", sort)
+    print("Execution time:", (et-st)*1000, "milliseconds.")
 
 # Tests ('pip install pytest'; run with 'pytest Bubble_Sort.py')
 
