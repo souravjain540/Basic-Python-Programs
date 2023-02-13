@@ -1,3 +1,6 @@
 repl*
 venv/
 .config/
+venv/
+.replit
+pyproject.toml
