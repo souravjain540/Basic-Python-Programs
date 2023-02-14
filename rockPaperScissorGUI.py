@@ -132,7 +132,7 @@ def scissors_checker():
 
 # User Image
 root.title("Rock Paper Scissors By @KrishnaSarathiGhosh")
-image = Image.open("Pictures/user.png")
+image = Image.open("GUIRockPaperScissorsKrishna_Images/user.png")
 resized_img= image.resize((200,205))
 new_image= ImageTk.PhotoImage(resized_img)
 usr_img = tkinter.Label(image=new_image)
@@ -160,7 +160,7 @@ txt.grid(column=1, row=4, padx=3, pady=10)
 # Buttons For Choosing
 rock_button = tkinter.Button(command=rock_checker,text="Rock", font="Helvetica 23 bold", fg="lightblue", bg="grey", activebackground="lightblue", activeforeground="grey")
 rock_button.grid(column=2, row=4, padx=5, pady=10)
-rock_img = Image.open('Pictures/rock.png')
+rock_img = Image.open('GUIRockPaperScissorsKrishna_Images/rock.png')
 resized_rock_img = rock_img.resize((80,80))
 new_rock_img = ImageTk.PhotoImage(resized_rock_img)
 rock_img_2 = tkinter.Label(image=new_rock_img)
@@ -168,7 +168,7 @@ rock_img_2.grid(column=2, row=5)
 
 paper_button = tkinter.Button(command=paper_checker,text="Paper", font="Helvetica 23 bold", fg="Green", bg="Yellow", activebackground="Green", activeforeground="Yellow")
 paper_button.grid(column=3, row=4,padx=5, pady=10)
-paper_img = Image.open('Pictures/paper.jpg')
+paper_img = Image.open('GUIRockPaperScissorsKrishna_Images/paper.jpg')
 resized_paper_img = paper_img.resize((80,80))
 new_paper_img = ImageTk.PhotoImage(resized_paper_img)
 paper_img_2 = tkinter.Label(image=new_paper_img)
@@ -176,7 +176,7 @@ paper_img_2.grid(column=3, row=5)
 
 scissors_button = tkinter.Button(command=scissors_checker,text="Scissors", font="Helvetica 23 bold", fg="Red", bg="lightblue", activebackground="Red", activeforeground="lightblue")
 scissors_button.grid(column=4, row=4, pady=10, padx=5)
-scissors_img = Image.open('Pictures/sc.png')
+scissors_img = Image.open('GUIRockPaperScissorsKrishna_Images/sc.png')
 resized_scissors_img = scissors_img.resize((80,80))
 new_scissors_img = ImageTk.PhotoImage(resized_scissors_img)
 scissors_img_2 = tkinter.Label(image=new_scissors_img)
@@ -184,7 +184,7 @@ scissors_img_2.grid(column=4, row=5)
 
 
 #Computer Image
-image2 = Image.open("Pictures/anyfile.jpg")
+image2 = Image.open("GUIRockPaperScissorsKrishna_Images/anyfile.jpg")
 photo2 = ImageTk.PhotoImage(image2)
 resized_img2= image2.resize((200,205))
 new_image2= ImageTk.PhotoImage(resized_img2)
