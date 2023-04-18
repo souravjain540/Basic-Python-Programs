@@ -1,0 +1,37 @@
+# The modified code takes input from the user and converts the entered integer to its Roman numeral equivalent
+class Solution:
+    def intToRoman(self, num: int) -> str:
+        # A dictionary with the decimal and Roman numeral representations is defined
+        roman_numerals = {
+            1000: 'M',
+            900: 'CM',
+            500: 'D',
+            400: 'CD',
+            100: 'C',
+            90: 'XC',
+            50: 'L',
+            40: 'XL',
+            10: 'X',
+            9: 'IX',
+            5: 'V',
+            4: 'IV',
+            1: 'I'
+        }
+        
+        # Prompt the user to enter the integer to be converted
+        num = int(input("Enter an integer: "))
+        
+        # A loop is used to convert the integer to Roman numerals
+        result = ''
+        for value, symbol in roman_numerals.items():
+            while num >= value:
+                result += symbol
+                num -= value
+        
+        return result
+
+# An instance of the Solution class is created
+s = Solution()
+
+# The intToRoman method is called with the user input as the argument and the result is printed
+print(s.intToRoman()) 
