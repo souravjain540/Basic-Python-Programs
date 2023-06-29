@@ -7,8 +7,8 @@ import os
 
 before_pdf_path="before.pdf"
 after_pdf_path="after.pdf"
-images_after = pdf2image.convert_from_path(after_pdf_path)
-images_before = pdf2image.convert_from_path(before_pdf_path)
+images_after = pdf2image.convert_from_path(after_pdf_path) # add first pdf here
+images_before = pdf2image.convert_from_path(before_pdf_path) # add ssecond pdf here
 for i in range(len(images_after)):
     # Save pages as images in the pdf
     save_image_path="1"+str(i + 1) + ".jpg"
@@ -37,9 +37,6 @@ for i in range(1, min(no_of_pages_in_workbook2, no_of_pages_in_workbook1) + 1):
     diff ="diff" + str(i) + ".png"
     cv2.imwrite(diff, difference)
     res = cv2.absdiff(image1, image2)
-
-    # --- convert the result to integer type ---
-    
 
     # --- find percentage difference based on number of pixels that are not zero ---
     percentage = (np.count_nonzero(res) * 100) / res.size
