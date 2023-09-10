@@ -36,4 +36,7 @@ a = input("Enter coefficient of a: ")
 b = input("Enter coefficient of b: ")
 c = input("Enter coefficient of c: ")
 
-quadratic_eq(int(a),int(b),int(c))
+try:
+    quadratic_eq(int(a),int(b),int(c))
+except ValueError:
+    print("Your input must be an integer!")
