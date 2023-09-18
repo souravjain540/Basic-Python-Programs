@@ -1,6 +1,9 @@
+# file sorter to sort your downloads folder based on file type
+
 import os
 import shutil
 
+# folder names with their corresponding extension. if you want to add more, add here.
 wow = {
     "documents": (
         ".pdf", ".xslx", ".docx", ".pptx", ".txt", ".odt", ".rtf", ".csv", ".md",
@@ -34,10 +37,10 @@ wow = {
     ),
 }
 
-# change directory here, remember to use double backward slashes if on windows
-os.chdir("D:\\Edge Downloads")
+# change the string inside the brackets to your desired directory
+os.chdir("/mnt/Storage/Downloads")
 
-
+# logic to sort folders. any random folder(s) -> inside Folders
 def folder_sort():
     try:
         os.mkdir("Folders")
@@ -54,7 +57,7 @@ def folder_sort():
         else:
             pass
 
-
+# logic to sort files
 def file_sort(folder_name, file_extension, src_folder = ""):
     if src_folder == "": pass
     else: os.chdir(src_folder)
@@ -71,7 +74,7 @@ def file_sort(folder_name, file_extension, src_folder = ""):
             except Exception as e:
                 os.remove(i)
 
-
+# start 
 def main():
     folder_sort()
     for key, value in wow.items():
