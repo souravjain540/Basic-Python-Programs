@@ -1,5 +1,5 @@
 """
-Python program to find sum of divisors of a number n,
+Python program to find the sum of divisors of a number less than n,
 for example:
 print(sum_divisors(0))
 # 0
@@ -21,10 +21,10 @@ def sum_divisors(n):
     while x < n:
         if n % x == 0:
             sum += x
-        else:
-            x += 1
+        
+        x += 1
             
     return sum
 
-
+print(sum_divisors(int(input('Enter the whole number: '))))
 

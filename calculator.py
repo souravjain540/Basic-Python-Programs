@@ -13,7 +13,10 @@ def multiply(num1, num2):
     return num1*num2
 #division
 def divide(num1, num2):
-    return num1/num2
+    try:
+        return num1/num2
+    except ZeroDivisionError:
+        return (f'In the division, a value greater than 0 is expected and a value equal to number was obtained. = {num2}')
 
 #command for operation
 print("choose operation")
