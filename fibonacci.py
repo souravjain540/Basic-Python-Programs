@@ -1,6 +1,24 @@
-def fibonacci_of(n):
-  if n in {0, 1}:
-    return n
-  return fibonacci_of(n - 1) + fibonacci_of(n - 2)
-for i in range(1,100):
-  print(fibonacci_of(i))
+# Program to display the Fibonacci sequence up to n-th term
+
+n = int(input("How many terms? ")) #no of terms
+
+# first two terms
+n1, n2 = 0, 1
+count = 0
+
+# check if the number of terms is valid
+if n <= 0:
+   print("Please enter a positive integer")
+# if there is only one term, return n1
+elif n == 1:
+   print("Fibonacci sequence upto",n,":")
+   print(n1)
+# generate fibonacci sequence
+else:
+   print("Fibonacci sequence:")
+   while count < n:
+       print(n1)
+       nth = n1 + n2
+       n1 = n2
+       n2 = nth
+       count += 1
