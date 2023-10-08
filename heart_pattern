@@ -1,0 +1,22 @@
+for i in range(3):
+    for j in range(10):
+        if i == 0:
+            if j == 1 or j == 2 or j == 7 or j == 8:
+                print('*', end=' ')
+            else:
+                print(' ', end=' ')
+        elif i == 1:
+            if j == 4 or j == 5:
+                print(" ", end=' ')
+            else:
+                print('*', end=' ')
+        else:
+            print('*', end=' ')
+    print()
+for i in range(4):
+    for j in range(10):
+        if j <= i or j >= 10 -(i+1):
+            print(' ', end=' ')
+        else:
+            print('*', end=' ')
+    print()
