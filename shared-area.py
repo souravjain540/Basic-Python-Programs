@@ -1,4 +1,6 @@
 # A program to calculate the shared area of two rectangles
+# Author: Jacob Smith
+
 import re
 
 
