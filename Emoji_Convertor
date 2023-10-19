@@ -1,12 +1,100 @@
-message = input("> ")
-words = message.split()
-emojis = {
- ":)" :"😄",
- ":(" :"😔",
- ":D" :"😁"
+import tkinter as tk
+from tkinter import ttk
 
-}
-output = " "
-for word in words:
-    output+=emojis.get(  word,word) + " "
-print(output)
+# Define a function to convert the input message to emojis
+def convert_message():
+    # Get the input message from the Entry widget
+    message = message_entry.get()
+
+    # Split the message into words
+    words = message.split()
+
+    # Define a dictionary of emojis
+    emojis = {
+        ":)": "😄",
+        ":(": "😔",
+        ":D": "😁",
+        ":p": "😋",
+        ":o": "😲",
+        ";)": "😉",
+        ":/": "😕",
+        ":|": "😐",
+        ":*": "😘",
+        "<3": "❤️",
+        ":heart:": "❤️",
+        ":poop:": "💩",
+        ":fire:": "🔥",
+        ":thumbsup:": "👍",
+        ":thumbsdown:": "👎",
+        ":ok_hand:": "👌",
+        ":clap:": "👏",
+        ":muscle:": "💪",
+        ":pray:": "🙏",
+        ":rocket:": "🚀",
+        ":earth:": "🌍",
+        ":sun:": "☀️",
+        ":moon:": "🌙",
+        ":star:": "⭐️",
+        ":cloud:": "☁️",
+        ":umbrella:": "☔️",
+        ":snowflake:": "❄️",
+        ":zap:": "⚡️",
+        ":bell:": "🔔",
+        ":gift:": "🎁",
+        ":birthday:": "🎂",
+        ":tada:": "🎉",
+        ":balloon:": "🎈",
+        ":camera:": "📷",
+        ":book:": "📚",
+        ":computer:": "💻",
+        ":iphone:": "📱",
+        ":tv:": "📺",
+        ":moneybag:": "💰",
+        ":gem:": "💎",
+        ":key:": "🔑",
+        ":hammer:": "🔨",
+        ":wrench:": "🔧",
+        ":bulb:": "💡",
+        ":lock:": "🔒",
+        ":unlock:": "🔓",
+        ":warning:": "⚠️",
+        ":exclamation:": "❗️",
+        ":question:": "❓",
+        ":heart_eyes:": "😍",
+        ":sunglasses:": "😎",
+        ":facepalm:": "🤦‍♂️",
+        ":shrug:": "🤷‍♀️",
+        ":man_dancing:": "🕺",
+        ":woman_dancing:": "💃",
+        ":man_in_tuxedo:": "🤵",
+        ":bride_with_veil:": "👰",
+        ":pregnant_woman:": "🤰",
+        ":breastfeeding:": "🤱",
+    }
+
+    # Convert each word to an emoji if it exists in the dictionary
+    output = " "
+    for word in words:
+        output += emojis.get(word.lower(), word) + " "
+
+    # Update the Label widget with the output message
+    output_label.config(text=output)
+
+# Create a Tkinter window
+window = tk.Tk()
+window.title("Emoji Converter")
+
+# Create a Tkinter Entry widget for the user to enter the message
+message_entry = ttk.Entry(window)
+message_entry.pack()
+
+# Create a Tkinter Button widget to convert the message to emojis
+convert_button = ttk.Button(window, text="Convert", command=convert_message)
+convert_button.pack()
+
+# Create a Tkinter Label widget to display the output message
+output_label = ttk.Label(window, font=("Segoe UI Emoji", 12))
+output_label.pack()
+
+# Start the Tkinter event loop
+window.mainloop()
