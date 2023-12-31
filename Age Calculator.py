@@ -4,7 +4,18 @@ import datetime
 
 def calculate_age(born):
     today = datetime.date.today()
-    return today.year - born.year - ((today.month, today.day) < (born.month, born.day))
+    months = 0
+    days = 0
+    if today.month < born.month or (today.month == born.month and today.day < born.day):
+        months += today.month - 1
+        days += today.day
+    elif today.month == born.month and today.day > born.day:
+        days += (today.day - born.day)
+    else:
+        months += (today.month - born.month)
+        days += today.day
+    print(today.day)
+    return [today.year - born.year - ((today.month, today.day) < (born.month, born.day)), months + (12-born.month), days]
 
 def main():
 
@@ -18,7 +29,7 @@ def main():
     age = calculate_age(datetime.date(year, month, day))
 
     # Print the age
-    print("Your age is: {}".format(age))
+    print(f"Your age is: {age[0]} years, {age[1]} months and {age[2]} days")#.format(age))
 
 if __name__ == '__main__':
     main()
