@@ -9,7 +9,7 @@ class BankGame :
         print("Enter your name: ")
         name = input()
         # I am inserting do loop to make the program run forever under correct inputs.
-        print("Hi, " + name + "\bWelcome to my program!")
+        print("Hi " + name.capitalize() + ", Welcome to my program!")
         print("____________________________")
         print("Do you want to start/repeat the program?")
         print("Enter Y for Yes and N for No: ")
