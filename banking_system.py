@@ -1,3 +1,4 @@
+#!/usr/bin/python3
 # TODO:
 # Parent Class : User
 # Holds details about an user
