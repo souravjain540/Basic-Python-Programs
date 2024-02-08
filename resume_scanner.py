@@ -1,4 +1,6 @@
 # Pip install resume_parser
+# Insert resume documents in the same folder as the python script
+
 from resume_parser import resumeparse
 
 def scan_resume(resume):
