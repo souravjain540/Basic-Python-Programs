@@ -1,8 +1,7 @@
-Python 3.10.0 (tags/v3.10.0:b494f59, Oct  4 2021, 19:00:18) [MSC v.1929 64 bit (AMD64)] on win32
-Type "help", "copyright", "credits" or "license()" for more information.
 from heapq import heapify as hpf
 from heapq import heappop as hpp
 from heapq import heappush as hppu
+
 class Node:
     def __init(self,ch,freq,left=None,right=None):
         self.ch,self.freq=ch,freq
@@ -23,3 +22,7 @@ def getHuffmanTree(txt):
     root=pq[0]
     return root
 
+if __name__ == "__main__":
+    text = "your text here"
+    root = getHuffmanTree(text)
+    # Now you can use the 'root' variable which is the root of the Huffman tree.
