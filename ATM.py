@@ -1,82 +1,76 @@
+"""
 #ATM Machine Using python
+This is a simple python program which aims to mimic the functions of an atm.
+It contains check BALANCE, withdraw, payin and retrive card features.
 
-print("="*30, "Welcome to Python Bank ATM", "="*30)
+Original Author: Unknown
 
-restart = ("Y")
-chances = 3
-balance = 999.99
+Contributors: (Add your name if you are a part)
+Ruhan Saad Dave [https://github.com/Ruhan-Saad-Dave]
+#And other contributors which I have no knowledge of.
 
-while chances >= 0:
-    pin = int(input("\nPlease enter your 4 Digit pin: "))
-    if pin == (1234):
-        print("\nCorrect pin!!")
+Last update: (Change this everytime you update it)
+Fixed the negative BALANCE glitch, made the program more optimised, and added comments for explaination.
+"""
 
-        while restart not in ("n", "no", "N", "NO"):
-            print("\nPlease Press 1 For Your Balance.")
-            print("Please Press 2 To Make a Withdrawl.")
-            print("Please Press 3 To Pay in.")
-            print("Please Press 4 To Return Card.")
-            
-            option = int(input("\nWhat Would you like to Choose?: "))
+print("="*30, "Welcome to Python Bank ATM", "="*30)    #Initial welcome statement
 
-            if option == 1:
-                print(f"\nYour Balance is: ${balance}")
-                restart = input("\nWould You like to do something else? ")
+#Global variables
+CHANCES= 3 
+BALANCE = 1000
+PIN = '1234'
 
-                if restart in ("n", "no", "N", "NO"):
-                    print("\nThank You\n")
-                    break
-
-            elif option == 2:
-                option2 = ("y")
-                withdrawl = float(input("\nHow Much Would you like to withdraw? 10, 20, 40, 60, 80, 100 for other enter 1: "))
-
-                if withdrawl in [10, 20, 40, 60, 80, 100]:
-                    balance = balance - withdrawl
-                    print(f"\nYour balance after the withdrawl is ${balance}")
-                    restart = input("\nWould You like to do something else? ")
-
-                    if restart in ("n", "no", "N", "NO"):
-                        print("\nThank You\n")
-                        break
-
-                elif withdrawl == 1:
-                    withdrawl = float(input("\nPlease Enter Desired amount: "))
-                    balance = balance - withdrawl
-                    print(f"\nYour balance after the withdrawl is ${balance}")
-                    restart = input("\nWould You like to do something else? ")
-
-                    if restart in ("n", "no", "N", "NO"):
-                        print("\nThank You\n")
-                        break
-
-                elif withdrawl != [10, 20, 40, 60, 80, 100]:
-                    print("\nINVALID AMOUNT, Please try Again\n")
-                    restart = ("y")
-
-            elif option == 3:
-                pay_in = float(input("\nHow Much Would you like to Pay In? "))
-                balance = balance + pay_in
-                print(f"\nYour balance after the Pay-in is ${balance}")
-                restart = input("\nWould You like to do something else? ")
-
-                if restart in ("n", "no", "N", "NO"):
-                    print("\nThank You\n")
-                    break
-
-            elif option == 4:
-                print("\nPlease wait whilst your card is Returned....")
-                print("\nThank you for your service")
-                break
-
-            else:
-                print("\nPlease enter a correct number.\n")
-                restart = ("y")
-
-    elif  pin != (1234):
+while CHANCES > 0:
+    '''
+    This checks if the user has entered correct password or not.
+    If more than 3 times incorrect then calls the police.
+    '''
+    pin = input("Please enter your 4 Digit pin: (Default = 1234)")
+    if pin == PIN:
+        print("\nCorrect pin!!\nLoading bank details...\n")
+        break
+    else:
         print("\nINCORRECT PIN!!\n")
-        chances = chances - 1
+        CHANCES -= 1
+else:
+    print("\nYou ran out of CHANCES\nCalling the Police...\n")
 
-        if chances == 0:
-            print("Calling the Police...\n")
-            break
+while CHANCES >0:
+    '''
+    This is the main program, will work if the user didnt run out of chance. 
+    Used separate loop instead of nested loop to bring optimisation.
+    '''
+    print("\n\n\n1 ~ Your Balance")
+    print("2 ~ Make a Withdrawal")
+    print("3 ~ Pay In")
+    print("4 ~ Return Card")
+    option = input("Enter your option: ")
+    print('\n' * 2)
+
+    if option == '1':    #Checks for balance
+        print(f"Your Balance is: ${BALANCE}")
+
+    elif option == '2':    #Withdraw money if after withdraw have non-negative balance.
+        withdrawl = float(input("How Much Would you like to withdraw?: "))
+        if BALANCE - withdrawl < 0:
+            print("Insufficient BALANCE!")
+            next = input("Press enter to continue.")
+        else:
+            BALANCE -= withdrawl
+            print(f"Your BALANCE after the withdrawl is ${BALANCE}")
+            next = input("Press enter to continue.")
+                
+    elif option == '3':    #Put in money into the bank
+        pay_in = float(input("How Much Would you like to Pay In? "))
+        BALANCE = BALANCE + pay_in
+        print(f"Your BALANCE after the Pay-in is ${BALANCE}")
+        next = input("Press enter to continue.")
+
+    elif option == '4':    #Taking the card out and exiting the program.
+        print("Please wait whilst your card is Returned....\nThank you for your patience.")
+        break
+
+    else:
+        print("Invalid option, please try again.")
+
+#End of program.
