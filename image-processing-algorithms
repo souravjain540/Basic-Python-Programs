@@ -1,0 +1,130 @@
+from PIL import Image
+import numpy as np 
+import matplotlib.pyplot as plt
+
+"""
+This file contains implementations of functions for converting an image from rgb to greyscale,
+binarization (single, double thresholding), contrast enhancement with histogram equalization, blurring of the image
+both naively and with the summed-area table.
+"""
+
+
+def binarize_st(img, threshold):
+    """
+    binarization, single thresholding
+    returns the image, binarized
+    """
+    
+    img = np.asarray(img)
+    
+    img[img < threshold] = 0
+    img[img >= threshold] = 255
+    
+    return Image.fromarray(img)
+
+def binarize_dt(img, threshold1, threshold2):
+    """
+    binarization, double thresholding
+    returns the image, binarized
+    """
+    
+    img = np.asarray(img)
+    
+    img[img < threshold1] = 0
+    img[img > threshold2] = 0
+    img[(img >= threshold1) & (img <= threshold2)] = 255
+    
+    return Image.fromarray(img)
+
+
+#several functions, used for histogram equalization
+def hist(img):
+    img = np.asarray(img)
+    hist1 = [0] * 256
+    for row in img:
+        for pixel in row:
+            hist1[int(pixel)] += 1
+    
+    return hist1
+
+def cdf(img):
+    hist1 = hist(img)
+    pixels = img.shape[0] * img.shape[1]
+    hist1 = [p/pixels for p in hist1]  #normalizing the values in the histogram
+    cdf1 = np.cumsum(hist1)
+    cdf1 = cdf1.tolist()
+    plt.plot(cdf1)
+
+    return cdf1
+
+def tfunc(img):
+    cdf1 = cdf(img)
+    nor = max(cdf1)
+    T = [i / nor for i in cdf1]
+    return T 
+
+def histeq(inpimg):
+    """
+    histogram equalization itself
+    returns the image with its contrast enhanced 
+    """
+  
+    outimg = np.empty((inpimg.shape[0], inpimg.shape[1]))
+    T = tfunc(inpimg)
+    inpimg = np.asarray(inpimg)
+
+    for i,row in enumerate(inpimg):
+        for j,pixel in enumerate(row):   
+            I = T[int(pixel)] * 255
+            outimg[i,j] = I
+
+    # hist0 = hist(inpimg); ;plt.plot(hist0, 'o')
+    # hist1 = hist(outimg); plt.plot(hist1, 'o')
+    cdf0 = cdf(inpimg); plt.title('cdf before') 
+    plt.plot(cdf0)
+    cdf1 = cdf(outimg);
+    plt.title('cdf after') 
+    plt.plot(cdf1)
+    plt.show()
+    
+    outimg = Image.fromarray(outimg)
+    
+    return outimg
+
+
+def naive_blur(img):
+    """
+    naive blurring function, using the average value in a receptive field (mask)
+    returns the image, blurred
+    """
+    
+    out = np.empty((img.shape[0], img.shape[1]))
+    pixels = 5040
+    for x in range(35, img.shape[0]-35):
+            for y in range(35, img.shape[1]-35):
+                m = img[x-35:x+35, y-35:y+35]
+                out[x,y] = (np.sum(m)/pixels)
+
+    img = Image.fromarray(out)
+    
+    return img
+    
+def sum_table_blur(img):
+    """
+    blurring function, which utilizes the summed-area table
+    returns the image, blurred
+    """
+    out = np.empty((img.shape[0], img.shape[1]))
+    sum_table = np.cumsum(img, axis=0)
+    sum_table = np.cumsum(sum_table, axis=1)
+    pixels = 5040
+
+    for x in range(35, img.shape[0]-35):
+        for y in range(35, img.shape[1]-35):
+            out[x,y] = (sum_table[x+35,y+35] - sum_table[x-35,y+35] - sum_table[x+35,y-35] + sum_table[x-35,y-35])/pixels
+
+    img = Image.fromarray(out)
+    
+    return img
+
+
