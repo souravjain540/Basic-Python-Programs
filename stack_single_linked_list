@@ -1,0 +1,208 @@
+import re
+
+class Stack: ##stack data structure class
+
+    def __init__(self, max_size):
+        self.max_size = max_size
+        self.stack = []
+        self.op = ['+', '-', '*', '/', '(', ')']
+
+
+    def isempty(self):
+        return len(self.stack) == 0
+
+    def isfull(self):
+        return len(self.stack) == self.max_size
+    
+    def top(self):
+        if self.isempty():
+            raise Exception('The stack is empty, no value to show.')
+        elif self.stack[-1] in self.op:
+            return str(self.stack[-1])
+        else:
+            return float(self.stack[-1])
+
+    def push(self, value):
+        if self.isfull():
+            raise Exception('The stack is full -- impossible to push.')
+        else:
+            self.stack.append(value)
+
+    def pop(self):
+        if self.isempty():
+            raise Exception("The stack is empty -- impossible to pop.")
+        else:
+            popped = self.stack[-1]
+            del self.stack[-1]
+        return popped
+
+    def __repr__(self):
+        return str(self.stack)
+
+
+#infix-postfix converter
+
+def tolist(exp):
+    buf = ""
+    for i in exp:
+        if "0" <= i <= "9":
+            buf += i
+        else:
+            if buf:
+                yield buf
+            yield i
+            buf = ""
+    if buf:
+        yield list(buf)
+
+
+def isoperator(i):
+    opdict = {'*': 1, '/': 1, '+': 2, '-': 2, '(':0, ')':0}
+    return i in opdict.keys()
+
+def isoperand(i):
+    return i.isnumeric()
+
+def notgreatersig(x, y):
+    opdict = {'*': 1, '/': 1, '+': 2, '-': 2}
+    if y in opdict.keys():
+        return True if opdict.get(x) <= opdict.get(y) else False
+    else:
+        return False
+    
+
+def postfix(exp):
+    opdict = {'*': 1, '/': 1, '+': 2, '-': 2}
+    operators = Stack(30)
+    postfix = ''
+    exp = tolist(exp)
+
+    for i in exp:
+        optop = operators.top() if not operators.isempty() else 0
+
+        if i == ' ':
+            postfix += i
+
+        elif i.isnumeric():
+            postfix += i
+
+        elif isoperator(i):
+            if i == '(':
+                operators.push(i)
+            elif i == ')':
+                while (not operators.isempty()) and optop != '(':
+                    optop = operators.top()
+                    if not operators.isempty() and optop == '(':
+                        operators.pop()
+                        break
+                    j = operators.pop()
+                    postfix += j
+
+            else:
+                if notgreatersig(i, optop):
+                    while notgreatersig(i, optop):
+                        optop = operators.top()
+                        if optop == 0 or opdict.get(optop) < opdict.get(i):
+                            break
+                        j = operators.pop()
+                        postfix += j
+                    operators.push(i)
+
+                elif operators.isempty() or not notgreatersig(i, optop):
+                    operators.push(i)
+
+    while not operators.isempty(): #pops all the elements, once the expression has been scanned fully
+        for j in operators.stack:
+            j = operators.pop()
+            postfix += j
+    postfix = re.sub('[( )]', ' ', postfix)
+
+    return postfix
+
+
+def eval_postf(exp):
+    opdict = {'*':'*', '/':'/', '+':'+', '-':'-'}
+    operands = Stack(30)
+    exp = tolist(exp)
+    res = 0
+
+    for i in exp:
+        if isoperand(i):
+            i = int(i)
+            operands.push(i)
+        elif isoperator(i):
+            val = opdict.get(i)
+            j = operands.pop()
+            k = operands.pop()
+            s = 0
+            if val == '+':
+                s = k+j
+                operands.push(s)
+            elif val == '*':
+                s = k*j
+                operands.push(s)
+            elif val == '-':
+                s = k-j
+                operands.push(s)
+            elif val == '/':
+                s = k/j
+                operands.push(s)
+    return operands.top()
+
+
+class Node: ##node class
+    def __init__(self, val=None):
+        self.val = val
+        self.next = None
+
+
+#Single linked list
+class SLL:
+    def __init__(self):
+        self.head = None
+        self.tail = None
+
+    def insert(self, exp):
+        for i in exp:
+            node = Node(int(i))
+            if self.head is None:
+                self.head = node
+                self.tail = node
+            else:
+                self.tail.next = node
+                self.tail = node
+
+
+    def printlist(self):
+        node = self.head
+        while node:
+            print(node.val, end='')
+            node = node.next
+        print()
+
+    def ispal(self,exp):
+        list = SLL()
+        list.insert(exp)
+        stack = Stack(30)
+        for i in exp:
+            stack.push(i)
+
+        node = list.head
+        while node:
+            j = stack.pop()
+            if str(node.val) == j:
+                node = node.next
+                continue
+            else:
+                print("The number is not a palindrome.")
+                return
+        print("The number is a palindrome.")
+
+
+
+
+
+
+
+
+
