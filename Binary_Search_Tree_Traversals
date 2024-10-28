@@ -1,0 +1,79 @@
+class Node:
+    def __init__(self, key):
+        self.left = None
+        self.right = None
+        self.val = key
+
+class BST:
+    def __init__(self):
+        self.root = None
+
+    def insert(self, root, key):
+        if root is None:
+            return Node(key)
+        else:
+            if key < root.val:
+                root.left = self.insert(root.left, key)
+            else:
+                root.right = self.insert(root.right, key)
+        return root
+
+    def search(self, root, key):
+        if root is None or root.val == key:
+            return root
+        if key < root.val:
+            return self.search(root.left, key)
+        return self.search(root.right, key)
+
+    # In-order traversal: Left, Root, Right
+    def inorder_traversal(self, root):
+        if root:
+            self.inorder_traversal(root.left)
+            print(root.val, end=', ')
+            self.inorder_traversal(root.right)
+
+    # Pre-order traversal: Root, Left, Right
+    def preorder_traversal(self, root):
+        if root:
+            print(root.val, end=', ')
+            self.preorder_traversal(root.left)
+            self.preorder_traversal(root.right)
+
+    # Post-order traversal: Left, Right, Root
+    def postorder_traversal(self, root):
+        if root:
+            self.postorder_traversal(root.left)
+            self.postorder_traversal(root.right)
+            print(root.val, end=', ')
+
+def main():
+    bst = BST()
+    root = None
+
+    while True:
+        value = input("Enter a value to insert into the BST (or type 'done' to finish): ")
+        if value.lower() == 'done':
+            break
+        try:
+            num = int(value)
+            root = bst.insert(root, num)
+        except ValueError:
+            print("Please enter a valid integer.")
+
+    print("\nIn-order traversal of BST:")
+    bst.inorder_traversal(root)
+    print("\nPre-order traversal of BST:")
+    bst.preorder_traversal(root)
+    print("\nPost-order traversal of BST:")
+    bst.postorder_traversal(root)
+
+    search_key = input("\nEnter a value to search in the BST: ")
+    try:
+        search_num = int(search_key)
+        found_node = bst.search(root, search_num)
+        print(f"{'Found' if found_node else 'Not found'}: {search_num}")
+    except ValueError:
+        print("Please enter a valid integer.")
+
+if __name__ == "__main__":
+    main()
