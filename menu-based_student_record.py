@@ -4,7 +4,14 @@ choice='y'
 while choice.lower()!='n':
     studName=input('enter your name ')
     Rollno=input('enter your Rollno ')
-    cgpa=int(input('cgpa :'))
+    #Adding error handling for CGPA 
+    try:
+        cgpa = float(input('CGPA: '))
+        if cgpa < 0 or cgpa > 10:
+            raise ValueError("CGPA should be between 0 and 10.")
+    except ValueError as e:
+        print(f"Invalid input for CGPA: {e}. Please try again.")
+        return
     singlerecord.append(studName)
     singlerecord.append(Rollno)
     singlerecord.append(cgpa)
