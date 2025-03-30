@@ -1,16 +1,52 @@
+
 import random
+from termcolor import colored
 
-randomInteger=random.randint(0,2)
-userInput=int(input("What do you choose ? Type 0 for Rock,1 for Paper or 2 for Scissors\n"))
-if(userInput!=0 and userInput!=1 and userInput!=2):
-    print("Wrong choise")
-    exit()
+try:
 
-if(userInput==randomInteger):
-    print("DRAW!!!")
-elif (userInput==randomInteger-1 or (userInput==2 and randomInteger==0)):
-    print("Computer Won")
-elif (randomInteger==userInput-1 or (randomInteger==2 and userInput==0)):
-    print("YOU WON!!!")
-print(userInput)
-print(f"computer choose {randomInteger}")
+        def rock_paper_scissors():
+            print("Welcome to Rock, Paper, Scissors Game!")
+
+            score = 0
+
+            while True:
+        
+                choice = ["rock", "paper", "scissor"]
+                player_choice = input("Enter your choice (rock, paper and scissor) or 'Q' to quite: ").lower().strip() 
+
+
+                if player_choice.lower().strip() == "q":
+                    print("Thanks for palying.")
+                    break
+            
+
+                if player_choice not in choice:
+                    print("Invalid input!")
+                    continue  
+                
+                computer_choice = random.choice(choice)
+                print(f"Computer choose {computer_choice}")
+
+                if player_choice == computer_choice:
+                    print(colored("It's a tie!", "blue"))
+                elif  (player_choice == "rock" and computer_choice == "scissor") or \
+                    (player_choice == "paper" and computer_choice == "rock") or \
+                    (player_choice == "scissor" and computer_choice == "paper"):
+                    score += 1
+                    print(colored("You win!", "green"))
+                   
+                else:
+                  print(colored("You lose!", "red"))
+
+                print(colored(f"Your score: {score}", "light_yellow"))
+
+except:
+     print("")
+
+(rock_paper_scissors())
+
+            
+        
+
+
+        
