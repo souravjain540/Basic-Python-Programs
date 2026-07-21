@@ -1,10 +1,8 @@
-Python 3.10.0 (tags/v3.10.0:b494f59, Oct  4 2021, 19:00:18) [MSC v.1929 64 bit (AMD64)] on win32
-Type "help", "copyright", "credits" or "license()" for more information.
 from heapq import heapify as hpf
 from heapq import heappop as hpp
 from heapq import heappush as hppu
 class Node:
-    def __init(self,ch,freq,left=None,right=None):
+    def __init__(self,ch,freq,left=None,right=None):
         self.ch,self.freq=ch,freq
         self.left,self.right=left,right
     def __lt__(self,other):
@@ -13,7 +11,7 @@ class Node:
 def getHuffmanTree(txt):
     if len(txt)==0:
         return
-    freq={ch:text.count(ch) for k,v in set(txt)}
+    freq={ch:txt.count(ch) for ch in set(txt)}
     pq=[Node(k,v) for k,v in freq.items()]
     hpf(pq)
     while len(pq)>1:
@@ -22,4 +20,26 @@ def getHuffmanTree(txt):
         hppu(pq,Node(None,newFreq,left,right))
     root=pq[0]
     return root
+
+def printCodes(node, code=""):
+    if node is None:
+        return
+        
+    # If this is a leaf node, it contains a character (internal nodes are created with None)
+    if node.ch is not None:
+        print(f"'{node.ch}' : {code}")
+        
+    # Traverse left (add 0 to code)
+    printCodes(node.left, code + "0")
+    # Traverse right (add 1 to code)
+    printCodes(node.right, code + "1")
+
+if __name__ == "__main__":
+    text = "hello huffman"
+    print(f"Building Huffman Tree for text: '{text}'")
+    root_node = getHuffmanTree(text)
+    
+    if root_node:
+        print("Huffman Codes:")
+        printCodes(root_node)
 
