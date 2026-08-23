@@ -11,10 +11,14 @@ def rectangle(length, breadth):
     return area
 
 def triangle(side1, side2, side3):
+    if side1 + side2 <= side3 or side1 + side3 <= side2 or side2 + side3 <= side1:
+        print("Invalid triangle sides.")
+        return None
+
     s = (side1 + side2 + side3)/2
     area = math.sqrt(s*(s-side1)*(s-side2)*(s-side3))
     return area
-
+    
 def circle(radius):
     area = 3.14 * radius * radius
     return area
@@ -38,12 +42,15 @@ while True:
         final_area = rectangle(length, breadth)
         break
 
-    elif shape.lower() == "triangle":
-        side1 = float(input("Enter the value of 1st side: "))
-        side2 = float(input("Enter the value of 2nd side: "))
-        side3 = float(input("Enter the value of 3rd side: "))
-        final_area = triangle(side1, side2, side3)
-        break
+   elif shape.lower() == "triangle":
+    side1 = float(input("Enter the value of 1st side: "))
+    side2 = float(input("Enter the value of 2nd side: "))
+    side3 = float(input("Enter the value of 3rd side: "))
+    final_area = triangle(side1, side2, side3)
+
+    if final_area is None:
+        continue
+    break
 
     elif shape.lower() == "circle":
         radius = float(input("Enter the value of radius: "))
