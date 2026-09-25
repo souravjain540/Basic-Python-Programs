@@ -11,6 +11,10 @@ def rectangle(length, breadth):
     return area
 
 def triangle(side1, side2, side3):
+    if side1 <= 0 or side2 <= 0 or side3 <= 0:
+        raise ValueError("All sides must be positive numbers.")
+    if side1 + side2 <= side3 or side1 + side3 <= side2 or side2 + side3 <= side1:
+        raise ValueError("These sides cannot form a triangle. Each side must be shorter than the sum of the other two.")
     s = (side1 + side2 + side3)/2
     area = math.sqrt(s*(s-side1)*(s-side2)*(s-side3))
     return area
@@ -42,7 +46,11 @@ while True:
         side1 = float(input("Enter the value of 1st side: "))
         side2 = float(input("Enter the value of 2nd side: "))
         side3 = float(input("Enter the value of 3rd side: "))
-        final_area = triangle(side1, side2, side3)
+        try:
+            final_area = triangle(side1, side2, side3)
+        except ValueError as error:
+            print(error)
+            continue
         break
 
     elif shape.lower() == "circle":
